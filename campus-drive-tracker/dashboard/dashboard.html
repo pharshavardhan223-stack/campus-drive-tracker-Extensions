@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Drive Tracker - Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <div class="dashboard-layout">
+    <!-- Sidebar / Navigation Header -->
+    <header class="dashboard-header">
+      <div class="container header-container">
+        <div class="logo-area">
+          <svg class="logo-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="24" height="24" rx="6" fill="url(#logoGrad)"/>
+            <path d="M7 19V7H17V19H7Z" stroke="white" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M10 10H14" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M10 14H14" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M12 3V5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+            <defs>
+              <linearGradient id="logoGrad" x1="0" y1="0" x2="24" y2="24" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#6366F1"/>
+                <stop offset="1" stop-color="#4F46E5"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <div class="brand-text">
+            <h2>Campus Drive Tracker</h2>
+            <p>Local Smart Alerts & Calendar Dashboard</p>
+          </div>
+        </div>
+
+        <div class="header-badges">
+          <span class="badge info-badge">v1.0.0</span>
+          <span class="badge success-badge">Smart Alarms Active</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="dashboard-main container">
+      
+      <!-- Metrics Overview Cards -->
+      <section class="metrics-grid">
+        <div class="metric-card total">
+          <div class="metric-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+            </svg>
+          </div>
+          <div class="metric-info">
+            <span class="metric-value" id="countTotal">0</span>
+            <span class="metric-label">Total Drives</span>
+          </div>
+        </div>
+        
+        <div class="metric-card pending">
+          <div class="metric-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+          <div class="metric-info">
+            <span class="metric-value" id="countPending">0</span>
+            <span class="metric-label">Pending Applications</span>
+          </div>
+        </div>
+
+        <div class="metric-card applied">
+          <div class="metric-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+          </div>
+          <div class="metric-info">
+            <span class="metric-value" id="countApplied">0</span>
+            <span class="metric-label">Applied Drives</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Search, Filters, View Toggles & Actions Bar -->
+      <section class="control-bar">
+        <div class="search-filter-group">
+          <div class="search-input-wrapper">
+            <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="searchInput" placeholder="Search by company, role, eligibility...">
+          </div>
+          <div class="select-wrapper">
+            <select id="statusFilter">
+              <option value="All">All Statuses</option>
+              <option value="Pending">Pending</option>
+              <option value="Applied">Applied</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="action-buttons-group">
+          <!-- View Switchers -->
+          <div class="view-toggle-container">
+            <button id="tableViewBtn" class="btn outline-btn active" title="Switch to List View">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="8" y1="6" x2="21" y2="6"></line>
+                <line x1="8" y1="12" x2="21" y2="12"></line>
+                <line x1="8" y1="18" x2="21" y2="18"></line>
+                <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                <line x1="3" y1="18" x2="3.01" y2="18"></line>
+              </svg>
+              <span>List</span>
+            </button>
+            <button id="calendarViewBtn" class="btn outline-btn" title="Switch to Calendar View">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              <span>Calendar</span>
+            </button>
+          </div>
+          
+          <button id="addDriveBtn" class="btn primary-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            <span>Add Drive</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Drives Table View -->
+      <section id="tableViewSection" class="drives-table-container">
+        <table id="drivesTable" class="drives-table">
+          <thead>
+            <tr>
+              <th>Company</th>
+              <th>Job Role</th>
+              <th>Deadline</th>
+              <th>Eligibility</th>
+              <th>CTC/Stipend</th>
+              <th>Reg. Link</th>
+              <th>Status</th>
+              <th class="actions-header">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="drivesTableBody">
+            <tr class="empty-state-row">
+              <td colspan="8">
+                <div class="empty-state">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                  <h4>No Campus Drives Saved</h4>
+                  <p>Open a placement email in Gmail and use the extension popup to extract, or click "Add Drive" above.</p>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Smart Calendar View -->
+      <section id="calendarViewSection" class="calendar-view-container hidden">
+        <div class="calendar-split-container">
+          <!-- Left Column: Compact Monthly Calendar Card -->
+          <div class="calendar-left-pane">
+            <div class="calendar-card">
+              <div class="calendar-header-row">
+                <button id="prevMonthBtn" class="icon-btn" title="Previous Month">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                  </svg>
+                </button>
+                <h3 id="calendarMonthYear">Month Year</h3>
+                <button id="nextMonthBtn" class="icon-btn" title="Next Month">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                  </svg>
+                </button>
+              </div>
+              
+              <div class="calendar-weekdays">
+                <span>S</span><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+              </div>
+              
+              <div id="calendarGrid" class="calendar-grid">
+                <!-- Dynamic calendar grids filled in javascript -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Selected Date Details Pane -->
+          <div class="calendar-right-pane">
+            <div class="details-card">
+              <div class="details-header">
+                <h3 id="selectedDateLabel">Select a Date</h3>
+                <span class="drives-count-badge" id="selectedDrivesCount">0 due</span>
+              </div>
+              <div id="selectedDateDetailsBody" class="details-body">
+                <div class="details-empty-state">
+                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                  </svg>
+                  <p>Select a date with a star (★) to view deadlines, registration links, and manage your placement applications.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Manually Add/Edit Drive Modal -->
+  <div id="driveModal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modalTitle">Add Campus Drive</h3>
+        <button id="closeModalBtn" class="close-btn">&times;</button>
+      </div>
+      <form id="modalForm" class="modal-form">
+        <input type="hidden" id="modalDriveId">
+        
+        <div class="form-group">
+          <label for="modalCompany">Company Name <span class="required">*</span></label>
+          <input type="text" id="modalCompany" required placeholder="e.g. Unistring Tech Solutions">
+        </div>
+        
+        <div class="form-group">
+          <label for="modalRole">Job Role <span class="required">*</span></label>
+          <input type="text" id="modalRole" required placeholder="e.g. Software Intern">
+        </div>
+        
+        <div class="form-group-row">
+          <div class="form-group">
+            <label for="modalDeadline">Registration Deadline <span class="required">*</span></label>
+            <input type="datetime-local" id="modalDeadline" required>
+          </div>
+          <div class="form-group">
+            <label for="modalStatus">Status</label>
+            <select id="modalStatus">
+              <option value="Pending">Pending</option>
+              <option value="Applied">Applied</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="modalLink">Registration URL</label>
+          <input type="url" id="modalLink" placeholder="e.g. https://forms.gle/example">
+        </div>
+
+        <div class="form-group-row">
+          <div class="form-group">
+            <label for="modalEligibility">Eligibility Criteria</label>
+            <input type="text" id="modalEligibility" placeholder="e.g. B.E/B.Tech CSE/ECE">
+          </div>
+          <div class="form-group">
+            <label for="modalCtc">CTC / Stipend</label>
+            <input type="text" id="modalCtc" placeholder="e.g. 4.0 to 8.0 LPA">
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" id="cancelModalBtn" class="btn outline-btn">Cancel</button>
+          <button type="submit" class="btn success-btn">Save Drive</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="dashboard.js"></script>
+</body>
+</html>
